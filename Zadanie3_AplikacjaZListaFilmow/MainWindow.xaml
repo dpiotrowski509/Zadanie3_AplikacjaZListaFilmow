@@ -1,0 +1,95 @@
+﻿<Window x:Class="Zadanie3_AplikacjaZListaFilmow.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Zadanie3_AplikacjaZListaFilmow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="800" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition/>
+            <RowDefinition Height="0.2*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.ColumnSpan="2"
+               Content="Lista filmów" 
+               HorizontalAlignment="Center" 
+               VerticalAlignment="Center" 
+               FontSize="25"
+               FontWeight="Bold"/>
+
+        <ListView Grid.Row="1" Grid.ColumnSpan="2"
+                  ItemsSource="{Binding}"
+                  HorizontalAlignment="Stretch"
+                  HorizontalContentAlignment="Stretch"
+                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                  PreviewMouseLeftButtonUp="GetItemId">
+            <ListView.ItemTemplate>
+                <DataTemplate >
+                    <Border Name="border" BorderBrush="DarkGray" BorderThickness="1"
+                    Padding="5" Margin="5">
+                        <Grid Margin="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Row="0" 
+                               Grid.Column="0"
+                               Text="Tytuł"/>
+                            <TextBlock Grid.Row="1" 
+                               Grid.Column="0"
+                               Text="Reżyser"/>
+                            <TextBlock Grid.Row="2" 
+                               Grid.Column="0"
+                               Text="Wydawca"/>
+                            <TextBlock Grid.Row="3" 
+                               Grid.Column="0"
+                               Text="Nośnik"/>
+                            <TextBlock Grid.Row="4" 
+                               Grid.Column="0"
+                               Text="Długość"/>
+
+                            <TextBlock Grid.Row="0" 
+                               Grid.Column="1"
+                               Text="{Binding Title}"/>
+                            <TextBlock Grid.Row="1" 
+                               Grid.Column="2"
+                               Text="{Binding Director}"/>
+                            <TextBlock Grid.Row="2" 
+                               Grid.Column="3"
+                               Text="{Binding Publisher}"/>
+                            <TextBlock Grid.Row="3" 
+                               Grid.Column="4"
+                               Text="{Binding Medium}"/>
+                            <TextBlock Grid.Row="4" 
+                               Grid.Column="5"
+                               Text="{Binding Duration}"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Grid.Row="3" Grid.Column="0"
+                Content="Edytuj film"
+                Style="{StaticResource editButtonStyle}" Click="ClickEditButton"
+                />
+
+        <Button Grid.Row="3" Grid.Column="1"
+                Content="Dodaj film"
+                Style="{StaticResource addButtonStyle}" Click="ClickAddButton"/>
+    </Grid>
+</Window>
